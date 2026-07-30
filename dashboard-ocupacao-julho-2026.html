@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capy Stays · Ocupação Julho 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EBF0EE; --surface:#FFFFFF; --ink:#14211D; --muted:#5C6A65;
+  --hair:#DAE2DE; --hair-strong:#C6D1CC;
+  --airbnb:#F0654F; --booking:#2C5CC5; --direto:#E0A020; --vacant:#E4EAE7;
+  --accent:#0E7A63; --accent-soft:#DCEFE9;
+  --shadow:0 1px 2px rgba(20,33,29,.05),0 8px 24px -12px rgba(20,33,29,.14);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif;font-size:15px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1120px;margin:0 auto;padding:32px 24px 72px}
+.mono{font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums}
+
+/* ---- header ---- */
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.brand{display:flex;align-items:center;gap:12px}
+.mark{width:38px;height:38px;border-radius:11px;background:var(--ink);display:grid;place-items:center;flex:0 0 auto}
+.mark svg{width:22px;height:22px}
+.brand h1{font-family:'Bricolage Grotesque';font-weight:700;font-size:19px;margin:0;letter-spacing:-.01em}
+.brand .sub{color:var(--muted);font-size:12.5px;font-weight:500}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:500;text-align:right}
+.eyebrow b{display:block;font-family:'Bricolage Grotesque';font-size:16px;letter-spacing:normal;text-transform:none;color:var(--ink);font-weight:600;margin-top:3px}
+
+/* ---- hero ---- */
+.hero{background:var(--surface);border-radius:20px;padding:30px 32px;box-shadow:var(--shadow);margin-bottom:16px;
+  display:grid;grid-template-columns:minmax(220px,300px) 1fr;gap:38px;align-items:center}
+.hero-num{display:flex;align-items:baseline;gap:6px}
+.hero-num .big{font-family:'Bricolage Grotesque';font-weight:800;font-size:74px;line-height:.9;letter-spacing:-.03em}
+.hero-num .pct{font-family:'Bricolage Grotesque';font-weight:700;font-size:30px;color:var(--muted)}
+.hero-label{font-size:13px;color:var(--muted);margin-top:10px;font-weight:500}
+.hero-label b{color:var(--ink);font-weight:600}
+.hero-right{display:flex;flex-direction:column;gap:12px}
+.hero-bartitle{font-size:12px;color:var(--muted);font-weight:600;display:flex;justify-content:space-between}
+.masterbar{height:38px;border-radius:10px;overflow:hidden;display:flex;background:var(--vacant);box-shadow:inset 0 0 0 1px rgba(20,33,29,.04)}
+.masterbar span{height:100%;transition:width .6s cubic-bezier(.4,0,.1,1)}
+.legend{display:flex;gap:20px;flex-wrap:wrap;margin-top:2px}
+.legend .li{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:500}
+.dot{width:11px;height:11px;border-radius:3px;flex:0 0 auto}
+.legend .li .v{margin-left:auto;color:var(--muted)}
+
+/* ---- kpi row ---- */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px}
+.kpi{background:var(--surface);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow)}
+.kpi .k{font-family:'Bricolage Grotesque';font-weight:700;font-size:30px;letter-spacing:-.02em}
+.kpi .l{font-size:12px;color:var(--muted);font-weight:500;margin-top:3px}
+.kpi .l b{color:var(--ink);font-weight:600}
+
+/* ---- controls ---- */
+.panel{background:var(--surface);border-radius:20px;box-shadow:var(--shadow);overflow:hidden}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px 16px;flex-wrap:wrap;border-bottom:1px solid var(--hair)}
+.toolbar h2{font-family:'Bricolage Grotesque';font-weight:600;font-size:17px;margin:0}
+.toolbar h2 span{color:var(--muted);font-weight:500;font-size:13px}
+.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+select,.sortbtn{font-family:'Inter';font-size:13px;font-weight:500;color:var(--ink);
+  border:1px solid var(--hair-strong);background:var(--surface);border-radius:9px;padding:8px 11px;cursor:pointer}
+select:hover,.sortbtn:hover{border-color:var(--accent)}
+.sortbtn.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.lbl{font-size:12px;color:var(--muted);font-weight:500;margin-right:2px}
+
+/* ---- table ---- */
+.thead{display:grid;grid-template-columns:38px 1.7fr 78px 62px 3fr;gap:14px;padding:11px 24px;
+  font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:600;
+  border-bottom:1px solid var(--hair)}
+.thead .r{text-align:right}
+.row{display:grid;grid-template-columns:38px 1.7fr 78px 62px 3fr;gap:14px;align-items:center;
+  padding:13px 24px;border-bottom:1px solid var(--hair);transition:background .12s}
+.row:last-child{border-bottom:none}
+.row:hover{background:#F6F9F8}
+.rank{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);font-weight:500}
+.apt-name{font-weight:600;font-size:14px;letter-spacing:-.01em}
+.apt-meta{font-size:11.5px;color:var(--muted);margin-top:2px;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.tag{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;padding:2px 6px;border-radius:5px;background:var(--accent-soft);color:var(--accent);letter-spacing:.02em}
+.taxa{font-family:'Bricolage Grotesque';font-weight:700;font-size:20px;text-align:right;letter-spacing:-.02em}
+.taxa .p{font-size:12px;color:var(--muted);font-weight:600}
+.nights{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);text-align:right}
+.bar{height:26px;border-radius:7px;overflow:hidden;display:flex;background:var(--vacant);box-shadow:inset 0 0 0 1px rgba(20,33,29,.04);cursor:default}
+.bar span{height:100%;transition:width .5s cubic-bezier(.4,0,.1,1);position:relative}
+.bar span:hover{filter:brightness(1.08)}
+
+/* tooltip */
+.tip{position:fixed;z-index:50;background:var(--ink);color:#fff;font-size:12px;font-weight:500;
+  padding:7px 10px;border-radius:8px;pointer-events:none;opacity:0;transition:opacity .12s;white-space:nowrap;
+  box-shadow:0 8px 20px -6px rgba(0,0,0,.4)}
+.tip .tmono{font-family:'JetBrains Mono',monospace}
+
+/* footnote */
+.note{margin-top:20px;padding:18px 22px;background:var(--surface);border-radius:14px;box-shadow:var(--shadow);
+  font-size:12.5px;color:var(--muted);line-height:1.65}
+.note b{color:var(--ink);font-weight:600}
+.note .k{font-family:'JetBrains Mono',monospace;font-size:11.5px}
+.note-flag{border-left:3px solid var(--direto);padding-left:12px;margin-top:10px}
+
+@media(max-width:760px){
+  .hero{grid-template-columns:1fr;gap:24px;padding:24px}
+  .hero-num .big{font-size:60px}
+  .kpis{grid-template-columns:1fr 1fr;gap:10px}
+  .thead{display:none}
+  .row{grid-template-columns:30px 1fr auto;grid-template-areas:"rank name taxa" "bar bar bar";row-gap:11px;padding:15px 18px}
+  .rank{grid-area:rank}.apt-cell{grid-area:name}.taxa{grid-area:taxa}
+  .nights-col{display:none}
+  .bar-cell{grid-area:bar}
+  .toolbar{padding:16px 18px}.thead,.row{padding-left:18px;padding-right:18px}
+  .wrap{padding:20px 14px 56px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <div class="mark">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 11.5C4 8.5 6.2 6.5 9 6.5h6c2.8 0 5 2 5 5v3c0 2.5-2 4.5-4.5 4.5H8.5C6 19 4 17 4 14.5v-3Z" fill="#E0A020"/>
+          <circle cx="9.2" cy="11" r="1.15" fill="#14211D"/>
+          <circle cx="14.8" cy="11" r="1.15" fill="#14211D"/>
+          <path d="M10.5 14.2c.9.7 2.1.7 3 0" stroke="#14211D" stroke-width="1.1" stroke-linecap="round"/>
+          <path d="M7 6.5c-.3-1 .2-2 1.2-2.2M17 6.5c.3-1-.2-2-1.2-2.2" stroke="#E0A020" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <h1>Capy Stays</h1>
+        <div class="sub">Painel de ocupação · portfólio Curitiba</div>
+      </div>
+    </div>
+    <div class="eyebrow">Relatório mensal<b>Julho 2026</b></div>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <div class="hero-num"><span class="big" id="heroTaxa">92,5</span><span class="pct">%</span></div>
+      <div class="hero-label">Ocupação total do portfólio · <b id="heroNights">844 de 1.014 noites</b> preenchidas</div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-bartitle"><span>Composição por canal</span><span>35 apartamentos</span></div>
+      <div class="masterbar" id="masterbar"></div>
+      <div class="legend" id="masterlegend"></div>
+    </div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="kpis" id="kpis"></div>
+
+  <!-- TABLE -->
+  <div class="panel">
+    <div class="toolbar">
+      <h2>Ocupação por apartamento <span>· julho 2026</span></h2>
+      <div class="controls">
+        <span class="lbl">Prédio</span>
+        <select id="grupoFilter"></select>
+        <span class="lbl" style="margin-left:6px">Ordenar</span>
+        <button class="sortbtn active" data-sort="taxa">Taxa</button>
+        <button class="sortbtn" data-sort="apt">Nome</button>
+        <button class="sortbtn" data-sort="direto">Direto</button>
+      </div>
+    </div>
+    <div class="thead">
+      <div>#</div><div>Apartamento</div><div class="r">Taxa</div><div class="r">Noites</div><div>Ocupação por canal</div>
+    </div>
+    <div id="tbody"></div>
+  </div>
+
+  <div class="note">
+    <b>Como a taxa é calculada.</b> Base de <span class="k">junho + julho</span>: cada reserva ocupa as noites entre check-in e check-out (a diária do dia da saída não conta, o hóspede já deixou o apê), e conta-se <b>só a parte que cai dentro de julho</b> — assim as estadias que viraram de junho pra julho entram certinho. Apês do mês inteiro têm base de <span class="k">31 noites</span>; os que estrearam no meio contam a partir da data de estreia, pra não ser comparação injusta. A ocupação por canal (Airbnb · Booking · Direto) soma exatamente a taxa total: cada noite pertence a um canal só. Sem sobreposição de reservas e sem duplicatas entre os dois meses.
+    <div class="note-flag"><b>Duas observações:</b> (1) "Zion 804" foi lido como <b>704 – Zion</b> (o único Zion que estreia em 16/07; o 804 é do Eixo). (2) O <b>1307 – Manhattan</b> teve hóspede em junho (11–15/06), então talvez não tenha estreado só em 10/07 — mantive a data que você passou, mas vale conferir.</div>
+  </div>
+
+</div>
+
+<div class="tip" id="tip"></div>
+
+<script>
+const CH = {
+  airbnb:{name:'Airbnb',color:'var(--airbnb)'},
+  booking:{name:'Booking',color:'var(--booking)'},
+  direto:{name:'Direto',color:'var(--direto)'}
+};
+const SUM = {taxa:92.5, occ:938, avail:1014, reservas:286, apts:35,
+  ch:{airbnb:761,booking:96,direto:81}, tx:{airbnb:75.0,booking:9.5,direto:8.0}};
+const DATA = [
+{apt:"Apto 809 - Ibiza",grupo:"IBIZA UNIQUE HOME",inicio:"mês todo",mid:false,avail:31,occ:31,taxa:100.0,reservas:12,airbnb:16,booking:15,direto:0},
+{apt:"Apto 909 - Ibiza",grupo:"IBIZA UNIQUE HOME",inicio:"mês todo",mid:false,avail:31,occ:31,taxa:100.0,reservas:16,airbnb:26,booking:5,direto:0},
+{apt:"Apto 204 - Eixo",grupo:"EIXO 795",inicio:"mês todo",mid:false,avail:31,occ:31,taxa:100.0,reservas:10,airbnb:31,booking:0,direto:0},
+{apt:"Apto 1307 - Manhattan Tower",grupo:"MANHATTAN TOWER",inicio:"10/07",mid:true,avail:22,occ:22,taxa:100.0,reservas:6,airbnb:22,booking:0,direto:0},
+{apt:"Apto 706 - Eixo",grupo:"EIXO 795",inicio:"mês todo",mid:false,avail:31,occ:31,taxa:100.0,reservas:2,airbnb:0,booking:0,direto:31},
+{apt:"Apto 704 - Zion",grupo:"ZION JOSE LOUREIRO",inicio:"16/07",mid:true,avail:16,occ:16,taxa:100.0,reservas:3,airbnb:7,booking:0,direto:9},
+{apt:"Apto 24 - My Way",grupo:"MY WAY",inicio:"17/07",mid:true,avail:15,occ:15,taxa:100.0,reservas:2,airbnb:2,booking:0,direto:13},
+{apt:"Apto 811 - Ibiza",grupo:"IBIZA UNIQUE HOME",inicio:"mês todo",mid:false,avail:31,occ:30,taxa:96.8,reservas:10,airbnb:30,booking:0,direto:0},
+{apt:"Apto 601 - Eixo",grupo:"EIXO 795",inicio:"mês todo",mid:false,avail:31,occ:30,taxa:96.8,reservas:8,airbnb:23,booking:7,direto:0},
+{apt:"Apto 504 - Cena Living",grupo:"CENA LIVING",inicio:"mês todo",mid:false,avail:31,occ:30,taxa:96.8,reservas:9,airbnb:24,booking:6,direto:0},
+{apt:"Apto 1408 - Ibiza",grupo:"IBIZA UNIQUE HOME",inicio:"mês todo",mid:false,avail:31,occ:30,taxa:96.8,reservas:11,airbnb:23,booking:0,direto:7},
+{apt:"Apto 404 - Cena Living",grupo:"CENA LIVING",inicio:"mês todo",mid:false,avail:31,occ:30,taxa:96.8,reservas:3,airbnb:27,booking:3,direto:0},
+{apt:"Apto 1905 - Plus Portão",grupo:"PLUS PORTÃO",inicio:"mês todo",mid:false,avail:31,occ:29,taxa:93.5,reservas:9,airbnb:29,booking:0,direto:0},
+{apt:"Apto 806 - Cena Living",grupo:"CENA LIVING",inicio:"mês todo",mid:false,avail:31,occ:29,taxa:93.5,reservas:9,airbnb:29,booking:0,direto:0},
+{apt:"Apto 101 - Eixo",grupo:"EIXO 795",inicio:"mês todo",mid:false,avail:31,occ:29,taxa:93.5,reservas:8,airbnb:15,booking:10,direto:4},
+{apt:"Apto 1605 - Ibiza",grupo:"IBIZA UNIQUE HOME",inicio:"mês todo",mid:false,avail:31,occ:29,taxa:93.5,reservas:9,airbnb:29,booking:0,direto:0},
+{apt:"Apto 1508 - Ibiza",grupo:"IBIZA UNIQUE HOME",inicio:"mês todo",mid:false,avail:31,occ:29,taxa:93.5,reservas:10,airbnb:26,booking:3,direto:0},
+{apt:"Apto 1104 - Cena Living",grupo:"CENA LIVING",inicio:"mês todo",mid:false,avail:31,occ:29,taxa:93.5,reservas:12,airbnb:27,booking:0,direto:2},
+{apt:"Apto 505 - Cena Living",grupo:"CENA LIVING",inicio:"mês todo",mid:false,avail:31,occ:29,taxa:93.5,reservas:14,airbnb:29,booking:0,direto:0},
+{apt:"Apto 1304 - Cena Living",grupo:"CENA LIVING",inicio:"mês todo",mid:false,avail:31,occ:29,taxa:93.5,reservas:5,airbnb:29,booking:0,direto:0},
+{apt:"Apto 806 - Zion",grupo:"ZION JOSE LOUREIRO",inicio:"mês todo",mid:false,avail:31,occ:29,taxa:93.5,reservas:10,airbnb:29,booking:0,direto:0},
+{apt:"Apto 206 - Eixo",grupo:"EIXO 795",inicio:"mês todo",mid:false,avail:31,occ:29,taxa:93.5,reservas:7,airbnb:14,booking:0,direto:15},
+{apt:"Apto 302 - CWBe",grupo:"CWBE RESIDENCE",inicio:"08/07",mid:true,avail:24,occ:22,taxa:91.7,reservas:7,airbnb:22,booking:0,direto:0},
+{apt:"Apto 312 - MUV",grupo:"MUV RESIDENCE",inicio:"11/07",mid:true,avail:21,occ:19,taxa:90.5,reservas:6,airbnb:19,booking:0,direto:0},
+{apt:"Apto 501 - Eixo",grupo:"EIXO 795",inicio:"mês todo",mid:false,avail:31,occ:28,taxa:90.3,reservas:8,airbnb:12,booking:16,direto:0},
+{apt:"Apto 1608 - Ibiza",grupo:"IBIZA UNIQUE HOME",inicio:"mês todo",mid:false,avail:31,occ:28,taxa:90.3,reservas:11,airbnb:18,booking:10,direto:0},
+{apt:"Apto 701 - Eixo",grupo:"EIXO 795",inicio:"mês todo",mid:false,avail:31,occ:28,taxa:90.3,reservas:7,airbnb:10,booking:18,direto:0},
+{apt:"Apto 202 - New England",grupo:"NEW ENGLAND",inicio:"mês todo",mid:false,avail:31,occ:28,taxa:90.3,reservas:2,airbnb:28,booking:0,direto:0},
+{apt:"Apto 805 - Zion",grupo:"ZION JOSE LOUREIRO",inicio:"mês todo",mid:false,avail:31,occ:28,taxa:90.3,reservas:11,airbnb:28,booking:0,direto:0},
+{apt:"Apto 1308 - Manhattan Tower",grupo:"MANHATTAN TOWER",inicio:"15/07",mid:true,avail:17,occ:15,taxa:88.2,reservas:5,airbnb:15,booking:0,direto:0},
+{apt:"Apto 411 - Ibiza",grupo:"IBIZA UNIQUE HOME",inicio:"mês todo",mid:false,avail:31,occ:27,taxa:87.1,reservas:11,airbnb:24,booking:3,direto:0},
+{apt:"Apto 1405 - Ibiza",grupo:"IBIZA UNIQUE HOME",inicio:"mês todo",mid:false,avail:31,occ:27,taxa:87.1,reservas:10,airbnb:27,booking:0,direto:0},
+{apt:"Apto 1204 - Cena Living",grupo:"CENA LIVING",inicio:"mês todo",mid:false,avail:31,occ:25,taxa:80.6,reservas:8,airbnb:25,booking:0,direto:0},
+{apt:"Apto 905 - Cena Living",grupo:"CENA LIVING",inicio:"mês todo",mid:false,avail:31,occ:24,taxa:77.4,reservas:8,airbnb:24,booking:0,direto:0},
+{apt:"Apto 804 - Eixo",grupo:"EIXO 795",inicio:"mês todo",mid:false,avail:31,occ:22,taxa:71.0,reservas:7,airbnb:22,booking:0,direto:0},
+];
+
+const nf = n => n.toLocaleString('pt-BR');
+const pct = n => n.toFixed(1).replace('.',',');
+
+/* hero */
+document.getElementById('heroNights').textContent = `${nf(SUM.occ)} de ${nf(SUM.avail)} noites`;
+const mb = document.getElementById('masterbar'), ml = document.getElementById('masterlegend');
+['airbnb','booking','direto'].forEach(k=>{
+  const w = SUM.ch[k]/SUM.avail*100;
+  const s = document.createElement('span');
+  s.style.width = w+'%'; s.style.background = CH[k].color;
+  attachTip(s, `${CH[k].name}: ${SUM.ch[k]} noites · ${pct(SUM.tx[k])}%`);
+  mb.appendChild(s);
+  ml.insertAdjacentHTML('beforeend',
+    `<div class="li"><span class="dot" style="background:${CH[k].color}"></span>${CH[k].name}<span class="v mono">${pct(SUM.tx[k])}%</span></div>`);
+});
+ml.insertAdjacentHTML('beforeend',
+  `<div class="li"><span class="dot" style="background:var(--vacant)"></span>Vago<span class="v mono">${pct(100-SUM.taxa)}%</span></div>`);
+
+/* kpis */
+const apts100 = DATA.filter(d=>d.taxa===100).length;
+const kpis = [
+  {k:nf(SUM.occ), l:`noites <b>ocupadas</b> em julho`},
+  {k:nf(SUM.reservas), l:`<b>reservas</b> confirmadas no mês`},
+  {k:SUM.apts, l:`<b>apartamentos</b> no portfólio`},
+  {k:apts100, l:`apês em <b>100%</b> de ocupação`}
+];
+document.getElementById('kpis').innerHTML = kpis.map(x=>
+  `<div class="kpi"><div class="k mono">${x.k}</div><div class="l">${x.l}</div></div>`).join('');
+
+/* group filter */
+const grupos = [...new Set(DATA.map(d=>d.grupo))].sort();
+const gf = document.getElementById('grupoFilter');
+gf.innerHTML = `<option value="">Todos os prédios</option>` +
+  grupos.map(g=>`<option value="${g}">${g}</option>`).join('');
+
+/* table render */
+let sortKey='taxa', filterG='';
+function render(){
+  let rows = DATA.filter(d=>!filterG || d.grupo===filterG);
+  rows = rows.slice().sort((a,b)=>{
+    if(sortKey==='apt') return a.apt.localeCompare(b.apt,'pt-BR');
+    if(sortKey==='direto') return b.direto - a.direto || b.taxa - a.taxa;
+    return b.taxa - a.taxa || b.occ - a.occ;
+  });
+  const tb = document.getElementById('tbody');
+  tb.innerHTML = rows.map((d,i)=>{
+    const seg = k => d[k]>0 ? `<span data-tip="${CH[k].name}: ${d[k]} noites (${pct(d[k]/d.avail*100)}%)" style="width:${d[k]/d.avail*100}%;background:${CH[k].color}"></span>` : '';
+    const midtag = d.mid ? `<span class="tag">estreou ${d.inicio}</span>` : '';
+    const grp = d.grupo.split(' ').slice(0,2).join(' ');
+    return `<div class="row">
+      <div class="rank">${String(i+1).padStart(2,'0')}</div>
+      <div class="apt-cell">
+        <div class="apt-name">${d.apt}</div>
+        <div class="apt-meta">${grp}${midtag}</div>
+      </div>
+      <div class="taxa">${pct(d.taxa)}<span class="p">%</span></div>
+      <div class="nights nights-col mono">${d.occ}/${d.avail}</div>
+      <div class="bar-cell"><div class="bar">${seg('airbnb')}${seg('booking')}${seg('direto')}</div></div>
+    </div>`;
+  }).join('');
+  // attach tooltips
+  tb.querySelectorAll('.bar span').forEach(s=>attachTip(s, s.dataset.tip));
+}
+
+/* tooltip engine */
+const tip = document.getElementById('tip');
+function attachTip(el, text){
+  el.addEventListener('mousemove', e=>{
+    tip.innerHTML = text;
+    tip.style.opacity=1;
+    let x=e.clientX+14, y=e.clientY-10;
+    if(x+tip.offsetWidth>window.innerWidth-8) x=e.clientX-tip.offsetWidth-14;
+    tip.style.left=x+'px'; tip.style.top=y+'px';
+  });
+  el.addEventListener('mouseleave', ()=>tip.style.opacity=0);
+}
+
+/* controls */
+document.querySelectorAll('.sortbtn').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.sortbtn').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active'); sortKey=b.dataset.sort; render();
+}));
+gf.addEventListener('change',()=>{filterG=gf.value; render();});
+
+render();
+</script>
+</body>
+</html>
